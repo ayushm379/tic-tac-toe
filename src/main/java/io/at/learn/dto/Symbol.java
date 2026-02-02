@@ -1,4 +1,4 @@
-package io.at.learn;
+package io.at.learn.dto;
 
 import lombok.Getter;
 

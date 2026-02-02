@@ -1,5 +1,7 @@
-package io.at.learn;
+package io.at.learn.tikTakToe;
 
+import io.at.learn.dto.Cell;
+import io.at.learn.dto.Symbol;
 import lombok.Data;
 
 import java.util.Arrays;
@@ -31,14 +33,14 @@ public class Board {
         boolean verticalChecked = true;
         boolean horizontalChecked = true;
         for(int i=0; i<size; i++) {
-            if(board[i][row].symbol() != symbol) verticalChecked = false;
-            if(board[size][i].symbol() != symbol) horizontalChecked = false;
+            if(board[i][col] == null || board[i][col].symbol() != symbol) verticalChecked = false;
+            if(board[row][i] == null || board[row][i].symbol() != symbol) horizontalChecked = false;
         }
         boolean leftDiagonalChecked = true;
         boolean righttDiagonalChecked = true;
         for(int i=0; i<size; i++) {
-            if(board[i][i].symbol() != symbol) leftDiagonalChecked = false;
-            if(board[size - i - 1][i].symbol() != symbol) righttDiagonalChecked = false;
+            if(board[i][i] == null || board[i][i].symbol() != symbol) leftDiagonalChecked = false;
+            if(board[size - i - 1][i] == null || board[size - i - 1][i].symbol() != symbol) righttDiagonalChecked = false;
         }
 
         return verticalChecked || horizontalChecked || leftDiagonalChecked || righttDiagonalChecked;
@@ -50,8 +52,17 @@ public class Board {
 
     public void printBoard() {
         System.out.println("-----------------------");
-        for(Cell[] row: board) {
-            System.out.println(Arrays.toString(row));
+        System.out.print("\t");
+        for(int i=0; i<board.length; i++)
+            System.out.print(i + "\t");
+        System.out.println();
+        for(int i=0; i<board.length; i++) {
+            System.out.print(i + "\t");
+            for(int j=0; j<board[0].length; j++) {
+                System.out.print(board[i][j] == null ? "-" : board[i][j].symbol());
+                System.out.print("\t");
+            }
+            System.out.println();
         }
         System.out.println("-----------------------");
     }

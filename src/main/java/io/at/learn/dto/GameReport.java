@@ -1,3 +1,3 @@
 package io.at.learn.dto;
 
-public record Game(int gameId, String playerWon) {}
+public record GameReport(int gameId, String playerWon) {}
